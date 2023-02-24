@@ -5,6 +5,13 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Admin;
+use App\Models\Aspirasi;
+use App\Models\Input_aspirasi;
+use App\Models\Kategori;
+use App\Models\Penduduk;
+use App\Models\Siswa;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,11 +21,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Kategori::create(
+            [
+                'ket_kategori' => 'Kebersihan'
+            ]
+        );
+        Kategori::create(
+            [
+                'ket_kategori' => 'Keamanan'
+            ]
+        );
+        Kategori::create(
+            [
+                'ket_kategori' => 'Kesehatan'
+            ]
+        );
+        //Input Data Penduduk
+        Siswa::create([
+            'nis' => '20208926',
+            'kelas' => 'XII TEL 10',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        //input data admin
+        Admin::create([
+            'username' => 'admin',
+            'password' => bcrypt('password'),
+        ]);
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AspirasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +21,17 @@ Route::get('/', function () {
         "title" => "Home"
     ]);
 });
-Route::get('/login');
-Route::get('/register');
 
-Route::get('/admin');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/aspirasi');
-
+//aspirasi
+Route::get('/', [AspirasiController::class, 'index'])->name('login');
+Route::post('/aspirasi/store', [AspirasiController::class, 'store']);
+Route::post('/aspirasi/feedback', [AspirasiController::class, 'feedback']);
+//admin
+Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
+Route::post('/admin/status', [AdminController::class, 'status'])->middleware('auth');
 
 
 
